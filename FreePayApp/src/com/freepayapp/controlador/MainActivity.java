@@ -54,6 +54,12 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				try {
 				
+					if(txtCodCobro.getText().toString().length()==0){
+						msn.setMessage("Ingrese el codigo del cobro.");	
+						msn.show(); 
+						return;
+					}
+					
 					int codigo=Integer.parseInt(txtCodCobro.getText().toString());
 					if(codigo<=0){
 						msn.setMessage("El codigo del cobro debe ser mayor a 0.");	
@@ -64,8 +70,7 @@ public class MainActivity extends Activity {
 					Cobro cobro=new Cobro(codigo,2);
 					PagoRest pago=new PagoRest();
 					pago.msn=msn;
-					pago.execute(cobro);
-				
+					pago.execute(cobro);		
 					
 					
 				} catch (Exception e) {
